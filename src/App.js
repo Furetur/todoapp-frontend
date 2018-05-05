@@ -25,6 +25,7 @@ class App extends React.Component {
     const todo = new Todo(makeOfflineId(), content, 'undone', date);
     // save the change
     const change = Change.add(todo);
+    // save the change
     this.localMemory.applyChange(change);
     // show the change to the user
     this.todoListNode.applyChange(change);
@@ -36,7 +37,7 @@ class App extends React.Component {
       <div>
         <Header>Todo app</Header>
         <main>
-          <TodoList todos={[]} ref={node => this.todoListNode = node}/>
+          <TodoList todosPromise={this.localMemory.getAll()} ref={node => this.todoListNode = node}/>
         </main>
         <InputSection addTodo={this.addTodo} />
       </div>

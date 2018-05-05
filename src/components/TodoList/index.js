@@ -10,9 +10,16 @@ import TodoItem from '../TodoItem';
 class TodoList extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      todos: props.todos,
-    };
+      todos: [],
+    }
+
+    props.todosPromise.then(todos => {
+      this.setState({
+        todos: [...todos, ...this.state.todos],
+      });
+    });
   }
 
   applyChange(change) {
@@ -47,7 +54,7 @@ class TodoList extends React.Component {
 
 
 TodoList.propTypes = {
-  todos: PropTypes.arrayOf(TodoType).isRequired,
+  todosPromise: PropTypes.instanceOf(Promise).isRequired,
 };
 
 

@@ -20,7 +20,7 @@ class Todo {
 
 
 export const TodoType = PropTypes.shape({
-  action: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
   status: PropTypes.string.isRequired,
   date: PropTypes.instanceOf(Date).isRequired,
 });

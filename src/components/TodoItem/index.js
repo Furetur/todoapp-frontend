@@ -20,7 +20,7 @@ class TodoItem extends Component {
         <input type="checkbox" className="todo-checkbox" defaultChecked={this.state.status === 'done'} />
         <span className="todo-content">{this.state.content}</span>
         <button className="todo-remove">Remove</button>
-        <span className="todo-date">{this.state.date}</span>
+        <span className="todo-date">{this.state.date.toString()}</span>
       </div>
     );
   }
