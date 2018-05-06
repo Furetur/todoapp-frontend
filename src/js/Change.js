@@ -8,7 +8,7 @@ class Change {
   constructor(type, oldTodo, newTodo) {
     this.type = type;
     // eslint-disable-next-line
-    this.todoId = newTodo._id; //because todos are returned from MongoDB; and MongoDB IDs are with an underscore
+    this.todoId = newTodo? newTodo._id : oldTodo._id; //because todos are returned from MongoDB; and MongoDB IDs are with an underscore
     this.oldTodo = oldTodo;
     this.newTodo = newTodo;
     this.date = new Date();

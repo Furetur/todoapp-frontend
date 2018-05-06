@@ -21,14 +21,34 @@ class App extends React.Component {
 
 
   addTodo = (content, date) => {
-    // update DOM
+    // create a todo
     const todo = new Todo(makeOfflineId(), content, 'undone', date);
-    // save the change
+    // construct a change
     const change = Change.add(todo);
-    // save the change
-    this.localMemory.applyChange(change);
     // show the change to the user
     this.todoListNode.applyChange(change);
+    // save the change
+    this.localMemory.applyChange(change);
+  }
+
+
+  removeTodo = (todo) => {
+    // construct a change
+    const change = Change.remove(todo);
+    // show the change to the user
+    this.todoListNode.applyChange(change);
+    // save the change
+    this.localMemory.applyChange(change);
+  }
+
+
+  updateTodo = (todo, props) => {
+    //construct a change
+    const change = Change.update(todo, props);
+    // show the change
+    this.todoListNode.applyChange(change);
+    // save the change
+    this.localMemory.applyChange(change);
   }
 
 
@@ -37,9 +57,11 @@ class App extends React.Component {
       <div>
         <Header>Todo app</Header>
         <main>
-          <TodoList todosPromise={this.localMemory.getAll()} ref={node => this.todoListNode = node}/>
+          <TodoList todosPromise={this.localMemory.getAll()} ref={node => this.todoListNode = node} removeTodo={this.removeTodo} updateTodo={this.updateTodo} />
         </main>
-        <InputSection addTodo={this.addTodo} />
+        <div className="todo-input">
+          <InputSection addTodo={this.addTodo} />
+        </div>
       </div>
     );
   }

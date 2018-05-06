@@ -18,9 +18,7 @@ class InputSection extends React.Component {
   }
   render() {
     return (
-      <Card>
-        <input type="text" className="add-todo-field" onKeyPress={this.onEnter} />
-      </Card>
+      <input type="text" className="add-todo-field" placeholder="Type here.." onKeyPress={this.onEnter} />
     );
   }
 }

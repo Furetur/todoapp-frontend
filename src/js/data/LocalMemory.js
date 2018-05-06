@@ -14,8 +14,12 @@ class LocalMemory {
    * Changes the todo and saves the change
    * @param {Change} change the change to apply
    */
-  applyChange(change) {
-    this.changesStore.setItem(change.todoId, change);
+  async applyChange(change) {
+    this.changesStore.setItem(await this.changesStore.length(), change);
+    if (!change.newTodo) {
+      this.mainStore.removeItem(change.todoId);
+      return;
+    }
     this.mainStore.setItem(change.todoId, change.newTodo);
   }
 

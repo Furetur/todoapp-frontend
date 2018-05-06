@@ -16,6 +16,11 @@ class Todo {
     this.status = status;
     this.date = date;
   }
+
+  updated(props) {
+    const copy = Object.assign({}, this);
+    return Object.assign(copy, props);
+  }
 }
 
 
